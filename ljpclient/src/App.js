@@ -6,7 +6,8 @@ class MainContent extends Component {
     super();
     this.state = {
       navbar: [],
-      isShow: false
+      isShow: false,
+      page: 'About'
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -24,20 +25,40 @@ class MainContent extends Component {
       .then(navbar => this.setState({navbar:navbar}));
   }
 
-  handleClick() {
-    this.setState(function(prevState) {
-      return {isShow: !prevState.isShow};
+  handleClick(page) {
+    this.setState( () => {
+      return { page };
     })
   }
 
+
   render(){
+    const navLinks = this.state.navbar.map(
+      (nav, i) => (
+        <a key={i} onClick={() => this.handleClick(nav.name)}>
+          <li >{nav.name}</li>
+        </a>
+      )
+    );
+
+    const description = this.state.navbar.filter(
+      (nav) => nav.name === this.state.page
+    ).map(
+      (nav, i) => (
+        <div key={i}> 
+          <h2 className="SectionHeader">{nav.name}</h2>
+          <p className="SectionContent">{nav.descrip}</p>
+        </div>
+      )
+    );
+
     return (
       <div>
-        <h1 className="App-title">Liam James Purcell</h1>
+        <h1 className="App-title">Liam Purcell</h1>
         <div className="navDiv">
-          <ul className="naviList" id="navi">{this.state.navbar.map((nav, i)=><a href="#" onClick={this.handleClick}><li key={i}>{nav.name}</li></a>)}</ul>
+          <ul className="naviList" id="navi">{navLinks}</ul>
           <div className="Menu-selection">
-            {this.state.navbar.map((nav,i)=><p className={this.state.isShow === true ? "Active" : "Inactive"} key={i}>{nav.descrip}</p>)}
+            {description}
           </div>
         </div>
       </div>

@@ -4,6 +4,9 @@
 
 #navi {
   padding-left: 0px;
+  background-color: #35B5CD;
+  opacity: 0.5;
+  box-shadow: 0 1px 0 1px rgba(126, 130, 131, 0.5);
 }
 
 li {
@@ -14,13 +17,18 @@ li {
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 1.8em;
   text-align: center;
   margin: 1%;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.SectionContent {
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .Inactive {

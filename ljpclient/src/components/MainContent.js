@@ -8,9 +8,6 @@ export default class MainContent extends Component {
       navbar: [],
       isShow: false,
       page: 'About',
-      aboutDetails: '',
-      musicDetails: '',
-      contactDetails:''
     };
     this.handleClick = this.handleClick.bind(this);
   }

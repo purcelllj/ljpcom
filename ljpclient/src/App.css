@@ -27,10 +27,14 @@ li {
 }
 
 .SectionContent {
-  max-width: 75%;
+  display: flex;
+  justify-content: center;
+  max-width: 60%;
   margin: 0 auto;
 }
-
+.hiddenContent {
+  display:none;
+}
 .Inactive {
   display: none;
 }

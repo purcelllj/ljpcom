@@ -3,9 +3,9 @@ const app = express();
 
 app.get('/home', (req,res) => {
     const navData = [
-        {name:'About', descrip: 'Hello! My name is Liam. I work in IT and have always been interesting in writing code. I have been learning more about React lately, so this is an updated version of my personal site, created with React and Express. I have added a little personal content to the site, so please enjoy!'},
+        {name:'About', descrip: 'My name is Liam Purcell. I am 34 years old and I am the luckiest husband and father of 3! My greatest joy in life comes from family, music, technology, and language. I am currently working as a QA Engineer for a software company in Portland, OR and the main product that my team works on is built with a React.js front end. I have really been enjoying working with React and created this React application in order to host some of my personal music projects and more. Hope you like what you see and hear!'},
         {name:'Music', descrip: '' },
-        {name:'Contact', descrip: 'Phone: <a href=\"tel:5039570812\">503-957-0812<\/a>'}
+        {name:'Contact', Phone: '503-957-0812', Email: 'purcelllj@gmail.com'}
     ];
     res.send(navData)
     res.end();

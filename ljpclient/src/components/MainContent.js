@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
+import { spawn } from 'child_process';
 
 export default class MainContent extends Component {
   constructor() {
@@ -14,7 +15,7 @@ export default class MainContent extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount(){
+  componentWillMount(){
     const options = {
       method: 'GET',
       cache: 'default'
@@ -38,6 +39,8 @@ export default class MainContent extends Component {
 
   render(){
     
+    
+
     const scPlaylist = (
         <div >
             <iframe 
@@ -49,7 +52,7 @@ export default class MainContent extends Component {
 
     const navLinks = this.state.navbar.map(
       (nav, i) => (
-        <a key={i} onClick={() => this.handleClick(nav.name)}>
+        <a key={i} id="navName" onClick={() => this.handleClick(nav.name)}>
           <li >{nav.name}</li>
         </a>
       )
@@ -58,16 +61,22 @@ export default class MainContent extends Component {
     const description = this.state.navbar.filter(
       (nav) => nav.name === this.state.page 
     ).map(
-      (nav, i) => (
-        <div key={i}> 
-          <h2 className="SectionHeader">{nav.name}</h2>
-          <p className="SectionContent">{nav.descrip}</p>
-        </div>
-      )
+      (nav, i) => {
+        const showPTag = nav.name === 'Contact' ? 'hiddenContent' : 'SectionContent';
+        const showAnchor = nav.name === 'Contact'? 'SectionContent' : 'hiddenContent'
+        return (
+          <div key={i}> 
+            <h2 className="SectionHeader">{nav.name}</h2>
+            <p className={showPTag}>{nav.descrip}</p>
+            <span className={showAnchor}>Phone:<a href="tel:{nav.phone}">{nav.Phone}</a></span>
+            <span className={showAnchor}>Email:<a href="mailto:{nav.Email}">{nav.Email}</a></span>
+          </div>
+        )
+      }
     );
 
     return (
-        <div>
+        <Fragment>
           <h1 className="App-title">Liam Purcell</h1>
           <div className="navDiv">
             <ul className="naviList" id="navi">{navLinks}</ul>
@@ -78,7 +87,7 @@ export default class MainContent extends Component {
           <div className="Menu-selection">
              {this.state.isShow ? scPlaylist : null} 
           </div>
-        </div>
+        </Fragment>
     );
   }
-}
+};

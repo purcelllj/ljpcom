@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { spawn } from 'child_process';
+import Nav from './Nav';
 
 export default class MainContent extends Component {
   constructor() {
@@ -35,8 +35,6 @@ export default class MainContent extends Component {
   
 
   render(){
-    
-    
 
     const scPlaylist = (
         <div >
@@ -74,13 +72,10 @@ export default class MainContent extends Component {
 
     return (
         <Fragment>
-          <h1 className="App-title">Liam Purcell</h1>
-          <div className="navDiv">
-            <ul className="naviList" id="navi">{navLinks}</ul>
+            <Nav />
             <div className="Menu-selection">
               {description}
             </div>
-          </div>
           <div className="Menu-selection">
              {this.state.isShow ? scPlaylist : null} 
           </div>

@@ -1,38 +1,36 @@
-import React, { Fragment, Component } from 'react';
-import Nav from './Nav';
+import React, { Fragment, Component } from 'react'
 
 export default class Music extends Component {
   constructor() {
     super();
     this.state = {
-      title:''
+      title: ''
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const options = {
       method: 'GET',
       cache: 'default'
-    }
+    };
 
     const url = '/music';
 
     fetch(url, options)
       .then(result => result.text())
-      .then(content => this.setState({title:content}));
+      .then(content => this.setState({ title: content }));
   }
 
-  render(){
+  render() {
     const source = this.state.title;
 
     return (
       <Fragment>
-        <Nav />
         <div className="audio">
           <h3>{this.state.urls}</h3>
           <audio className="player" src="" controls />
         </div>
-      </Fragment> 
-    )
+      </Fragment>
+    );
   }
 }

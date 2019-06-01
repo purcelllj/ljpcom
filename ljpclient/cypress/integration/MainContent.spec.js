@@ -1,37 +1,40 @@
+const homeLink = '[data-test-id=home]';
+const musicLink = '[data-test-id=music]';
+const resumeLink = '[data-test-id=resume]';
+const projectLink = '[data-test-id=project]';
+
 describe('Main content tests', () => {
   beforeEach(() => {
-    cy.visit('home', {
-      timeout: 20000
-    });
-  })
-  it('should find Resume menu item and click the link', () => {
-    cy.get('li')
-      .contains('Music')
-      .click()
-      .url().should('contain', '/music')
-
+    cy.visit('home');
   });
-  it('should find Resume menu item and click the link', () => {
-    cy.get('#navi > :nth-child(3)')
-      .should('contain', 'Resume')
+  it('should verify music nav link', () => {
+    cy.get(musicLink)
+      .should('have.text', 'music')
       .click()
-      .get('body').then((page) => {
-        expect(page.text()).not.to.include('Resume')
-      })
+      .url()
+      .should('contain', '/music');
   });
-  it('should return home and verify about detail', () => {
-    cy.url().should('include', '/home')
+  it('should verify resume nav link', () => {
+    cy.get(resumeLink)
+      .should('have.text', 'resume')
+      .click()
+      .get('body')
+      .then(page => {
+        expect(page.text()).not.to.include('Resume');
+      });
+  });
+  it('should verify home nav link', () => {
     cy.get('.SectionHeader')
+      .click()
       .should(res => {
-        const headItem = res.text()
-        expect(headItem).to.eq('About')
-      })
+        const headItem = res.text();
+        expect(headItem).to.eq('home');
+      });
     cy.get('.SectionContent', {
-        timeout: 30000
-      })
-      .should(res => {
-        const mainItem = res.text()
-        expect(mainItem.length).to.be.greaterThan(0)
-      })
-  })
-})
+      timeout: 30000
+    }).should(res => {
+      const mainItem = res.text();
+      expect(mainItem.length).to.be.greaterThan(0);
+    });
+  });
+});

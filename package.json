@@ -16,5 +16,8 @@
     "merge": "^1.2.1",
     "request": "^2.88.0",
     "url-parse": "^1.4.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.5.0"
   }
 }

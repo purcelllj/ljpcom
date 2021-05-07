@@ -15,7 +15,7 @@
     "macaddress": "^0.2.9",
     "merge": "^1.2.1",
     "request": "^2.88.0",
-    "url-parse": "^1.4.3"
+    "url-parse": "^1.5.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.5.0"
